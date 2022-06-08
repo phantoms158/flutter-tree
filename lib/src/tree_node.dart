@@ -12,6 +12,7 @@ class TreeNode extends StatefulWidget {
   final bool showActions;
   final double offsetLeft;
 
+  final Function(TreeNodeData node) onTapNode;
   final Function(TreeNodeData node) onTap;
   final void Function(bool checked, TreeNodeData node) onCheck;
 
@@ -39,6 +40,7 @@ class TreeNode extends StatefulWidget {
     required this.load,
     required this.append,
     required this.remove,
+    required this.onTapNode,
     required this.onTap,
     required this.onCheck,
     required this.onLoad,
@@ -75,6 +77,7 @@ class _TreeNodeState extends State<TreeNode>
         showCheckBox: widget.showCheckBox,
         showActions: widget.showActions,
         onTap: widget.onTap,
+        onTapNode: widget.onTapNode,
         onCheck: widget.onCheck,
         onExpand: widget.onExpand,
         onLoad: widget.onLoad,
@@ -178,10 +181,13 @@ class _TreeNodeState extends State<TreeNode>
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                    child: Text(
-                      widget.data.title,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
+                    child: InkWell(
+                      onTap: () => widget.onTapNode(widget.data),
+                      child: Text(
+                        widget.data.title,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                   ),
                 ),
