@@ -163,15 +163,6 @@ class _TreeNodeState extends State<TreeNode>
                   ),
                   turns: _turnsTween.animate(_rotationController),
                 ),
-                if (widget.showCheckBox)
-                  Checkbox(
-                    value: _isChecked,
-                    onChanged: (bool? value) {
-                      _isChecked = value!;
-                      widget.onCheck(_isChecked, widget.data);
-                      setState(() {});
-                    },
-                  ),
                 if (widget.lazy && _showLoading)
                   const SizedBox(
                     width: 12.0,
@@ -191,6 +182,15 @@ class _TreeNodeState extends State<TreeNode>
                     ),
                   ),
                 ),
+                if (widget.showCheckBox)
+                  Checkbox(
+                    value: _isChecked,
+                    onChanged: (bool? value) {
+                      _isChecked = value!;
+                      widget.onCheck(_isChecked, widget.data);
+                      setState(() {});
+                    },
+                  ),
                 if (widget.showActions)
                   TextButton(
                     onPressed: () {
