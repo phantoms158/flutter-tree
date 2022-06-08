@@ -13,6 +13,7 @@ class TreeView extends StatefulWidget {
   final bool showActions;
   final bool showCheckBox;
 
+  final Function(TreeNodeData node)? onTapNode;
   final Function(TreeNodeData node)? onTap;
   final void Function(TreeNodeData node)? onLoad;
   final void Function(TreeNodeData node)? onExpand;
@@ -28,6 +29,7 @@ class TreeView extends StatefulWidget {
     Key? key,
     required this.data,
     this.onTap,
+    this.onTapNode,
     this.onCheck,
     this.onLoad,
     this.onExpand,
@@ -147,6 +149,7 @@ class _TreeViewState extends State<TreeView> {
                 offsetLeft: widget.offsetLeft,
                 showCheckBox: widget.showCheckBox,
                 showActions: widget.showActions,
+                onTapNode: widget.onTapNode ?? (n) {},
                 onTap: widget.onTap ?? (n) {},
                 onLoad: widget.onLoad ?? (n) {},
                 onCheck: widget.onCheck ?? (b, n) {},
